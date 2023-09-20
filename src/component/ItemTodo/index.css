@@ -21,6 +21,10 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.todo-item-estimated-ended {
+  font-weight: 600;
+}
+
 .todo-item-icon {
   cursor: pointer;
   font-size: 18px;

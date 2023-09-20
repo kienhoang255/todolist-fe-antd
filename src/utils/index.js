@@ -55,11 +55,11 @@ const fileToBase64 = (file, callback) => {
   }
 };
 
-const shortenStr = (str, n) => {
-  return str?.length > n ? str.slice(0, n - 1) + "..." : str;
-};
-
 const countdownDateTime = (datetime) => {
+  //1000 = 1 sec
+  //1000 * 60 = 1 min
+  //1000 * 60 * 60 = 1 hour
+  //1000 * 60 * 60 * 24 = 1 day
   const days = Math.floor(datetime / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
     (datetime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -78,6 +78,5 @@ export default {
   saveToLocalStorage,
   takeFromLocalStorage,
   fileToBase64,
-  shortenStr,
   countdownDateTime,
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import "./index.css";
 
 import { Input, Button, Select, Upload, DatePicker, TimePicker } from "antd";
@@ -15,7 +15,7 @@ const AddTodo = ({
   msgErr,
   handleOnChangeValue,
   handleAddTodo,
-  filterAndSearch = true,
+  isAdd = true,
   searchValue,
   setSearchValue,
   sortOrder,
@@ -72,21 +72,33 @@ const AddTodo = ({
                 onChange={(_, d) => handleOnChangeValue(d, "estimated_date")}
               />
               <div>Time :</div>
-              <TimePicker
-                defaultValue={
-                  todo?.estimated_time
-                    ? dayjs(todo?.estimated_time, "HH:mm:ss")
-                    : ""
-                }
-                onChange={(_, d) => handleOnChangeValue(d, "estimated_time")}
-              />
+              {isAdd ? (
+                <TimePicker
+                  value={
+                    todo?.estimated_time
+                      ? dayjs(todo?.estimated_time, "HH:mm:ss")
+                      : ""
+                  }
+                  onChange={(_, d) => handleOnChangeValue(d, "estimated_time")}
+                />
+              ) : (
+                <TimePicker
+                  defaultValue={
+                    todo?.estimated_time
+                      ? dayjs(todo?.estimated_time, "HH:mm:ss")
+                      : ""
+                  }
+                  onChange={(_, d) => handleOnChangeValue(d, "estimated_time")}
+                />
+              )}
+
               <div className="todo-list-input-error">
                 {msgErr?.estimated && msgErr?.estimated}
               </div>
             </div>
           </div>
         </div>
-        {filterAndSearch && (
+        {isAdd && (
           <Button
             className="todo-list-button-add"
             type="primary"
@@ -97,7 +109,7 @@ const AddTodo = ({
         )}
       </div>
 
-      {filterAndSearch && (
+      {isAdd && (
         <div className="todo-list-filter-and-search">
           <Input
             placeholder="Search"
@@ -133,4 +145,4 @@ const AddTodo = ({
   );
 };
 
-export default AddTodo;
+export default memo(AddTodo);

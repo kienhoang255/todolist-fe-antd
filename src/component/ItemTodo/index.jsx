@@ -26,6 +26,7 @@ const ItemTodo = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCountdown, setShowCountdown] = useState(true);
   const [estimated, setEstimated] = useState(""); //estimated countdown
+  const [timeEnd, setTimeEnd] = useState();
 
   let interval = useRef();
 
@@ -50,6 +51,7 @@ const ItemTodo = ({
       interval.current = setInterval(() => {
         const currentDate = new Date().getTime();
         const timeRemaining = dateTime - currentDate;
+        setTimeEnd(timeRemaining);
 
         if (timeRemaining <= 0) {
           setEstimated("Hết thời gian!");
@@ -111,13 +113,22 @@ const ItemTodo = ({
           {todo.name}
           <Popover
             content={
-              todo.estimated_date && showCountdown
-                ? `${todo?.estimated_date} ${todo?.estimated_time}`
-                : estimated
+              <div
+                className={`todo-item-estimated ${
+                  timeEnd <= 0 && "todo-item-estimated-ended"
+                }`}
+              >
+                {todo.estimated_date && showCountdown
+                  ? `${todo?.estimated_date}
+                ${todo?.estimated_time}`
+                  : estimated}
+              </div>
             }
           >
             <div
-              className="todo-item-estimated"
+              className={`todo-item-estimated ${
+                timeEnd <= 0 && "todo-item-estimated-ended"
+              }`}
               onClick={() => setShowCountdown(!showCountdown)}
             >
               {todo.estimated_date && showCountdown
@@ -151,7 +162,7 @@ const ItemTodo = ({
         <AddTodo
           todo={newTodo}
           msgErr={msgErr}
-          filterAndSearch={false}
+          isAdd={false}
           handleOnChangeValue={handleOnChangeValue}
         />
       </Modal>

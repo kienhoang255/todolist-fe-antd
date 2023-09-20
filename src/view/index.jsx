@@ -12,7 +12,7 @@ import ItemTodo from "../component/ItemTodo";
 import AddTodo from "../component/AddTodo";
 import {
   addTodo,
-  delTodo,
+  deleteTodo,
   editTodo,
   markIsDone,
   setData,
@@ -105,7 +105,7 @@ const MainView = () => {
   };
 
   const handleDeleteTodo = (id) => {
-    dispatch(delTodo(id));
+    dispatch(deleteTodo(id));
     //clear local storage
     if (todoStore.length == 1) {
       utils.saveToLocalStorage("todoList", "");
