@@ -1,0 +1,62 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px !important;
+  border-bottom: 1px solid lightgray;
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+
+.todo-item-done {
+  background-color: lightgray;
+}
+
+.todo-item-estimated {
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.todo-item-estimated:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.todo-item-icon {
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 22px;
+}
+
+.todo-item-name-file {
+  font-size: 14px;
+  color: grey;
+}
+
+.todo-item-icon-download {
+  color: orange;
+}
+
+.todo-item-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.todo-item-icon-edit {
+  color: blue;
+}
+
+.todo-item-icon-done {
+  color: green;
+}
+
+.todo-item-icon-delete {
+  color: red;
+}
+
+.todo-item-hide {
+  display: none;
+}
